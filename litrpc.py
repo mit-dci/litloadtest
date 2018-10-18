@@ -60,3 +60,16 @@ class LitClient():
     def balance(self):
         """Get wallit balance"""
         return self.Balance()['Balances']
+
+    def __getstate__(self):
+        d = {
+            'ip': self.ip,
+            'port': self.port,
+            'msg_id': self.msg_id
+        }
+        return d
+
+    def __setstate__(self, state):
+        self.ip = state['ip']
+        self.port = state['port']
+        self.msg_id = state['msg_id']
